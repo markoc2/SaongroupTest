@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 
 namespace SaongroupTest.Controllers
 {
@@ -13,18 +16,21 @@ namespace SaongroupTest.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public    JsonResult GetCatRegions()
+        { 
+            return Json(Models.API.Get("regions"), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetReports(string elink = "") 
+        { 
+            return Json(Models.API.Get(elink), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult JS()
         {
-            ViewBag.Message = "Your application description page.";
 
             return View();
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }
